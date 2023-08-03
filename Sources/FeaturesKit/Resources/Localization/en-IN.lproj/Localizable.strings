@@ -1,0 +1,11 @@
+/*
+ Localizable.strings
+ FeaturesKit
+
+ Created by Adam Foot on 02/08/2023.
+
+ */
+
+/* General */
+
+"continueButton.title" = "Continue";
