@@ -29,6 +29,8 @@ struct ContinueButton: View {
 
             #elseif os(watchOS)
             Text(title)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
 
             #else
             Text(title)
