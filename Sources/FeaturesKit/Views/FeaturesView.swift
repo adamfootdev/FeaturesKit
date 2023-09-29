@@ -54,7 +54,7 @@ public struct FeaturesView: View {
             titleView
 
             VStack(spacing: 16) {
-                FeaturesListView(items)
+                FeaturesListView(configuration.items)
 
                 if configuration.showContinueButton {
                     ContinueButton(configuration.continueButtonTitle) {
