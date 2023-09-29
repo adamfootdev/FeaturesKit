@@ -10,6 +10,7 @@ This has been localised into multiple languages and the buttons will automatical
 1. [Requirements](#requirements)
 2. [Integration](#integration)
 3. [Usage](#usage)
+    - [FKConfiguration](#fkconfiguration)
     - [FKItem](#fkitem)
     - [FeaturesView](#featuresview)
 
@@ -41,12 +42,32 @@ To start using the framework, you'll need to import it first:
 import FeaturesKit
 ```
 
+### FKConfiguration
+
+This is a struct containing all of the relevant details required to configure FeaturesKit. It can be created like so:
+
+```swift
+let configuration = FKConfiguration(
+    title: "What's New in Example App", 
+    items: items, 
+    showContinueButton: true, 
+    continueButtonTitle: "Continue",
+) {
+    print("Done")
+}
+```
+
 ### FKItem
 
 This is a struct containing details relating to items that appear on the feature list screen. It can be created as follows:
 
 ```swift
-let item = FKItem(title: "New Feature", description: "This is a cool new feature!", systemImage: "checkmark.circle", imageTint: .green)
+let item = FKItem(
+    title: "New Feature", 
+    description: "This is a cool new feature!", 
+    systemImage: "checkmark.circle", 
+    imageTint: .green
+)
 ```
 
 The systemImage value is optional and will be hidden if a value is not provided. The imageTint value is also optional and will default to the accent color if not provided.
@@ -56,9 +77,5 @@ The systemImage value is optional and will be hidden if a value is not provided.
 The features view allows you to display a list of features that are available in your app with a custom title at the top. Create an instance of the view using the following:
 
 ```swift
-FeaturesView("What's New in Example App", items: [item]) {
-    print("Continue button tapped")
-}
+FeaturesView(configuration: configuration)
 ```
-
-There is also the ability to hide the continue button, set a custom title for the continue button and provide a custom action for the continue button.
