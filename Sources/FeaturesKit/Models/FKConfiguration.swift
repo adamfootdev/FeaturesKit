@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A custom struct containing details for FeaturesKit.
 public struct FKConfiguration {
 
     /// The `String` to display at the top of the screen

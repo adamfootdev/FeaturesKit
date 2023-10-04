@@ -13,6 +13,9 @@ This has been localised into multiple languages and the buttons will automatical
     - [FKConfiguration](#fkconfiguration)
     - [FKItem](#fkitem)
     - [FeaturesView](#featuresview)
+4. [Other Packages](#other-packages)
+    - [AboutKit](https://github.com/adamfootdev/AboutKit)
+    - [HelpKit](https://github.com/adamfootdev/HelpKit)
 
 ## Requirements
 
@@ -79,3 +82,13 @@ The features view allows you to display a list of features that are available in
 ```swift
 FeaturesView(configuration: configuration)
 ```
+
+## Other Packages
+
+### [AboutKit](https://github.com/adamfootdev/AboutKit)
+
+Add an about screen to your app.
+
+### [HelpKit](https://github.com/adamfootdev/HelpKit)
+
+Add a help screen to your app.
