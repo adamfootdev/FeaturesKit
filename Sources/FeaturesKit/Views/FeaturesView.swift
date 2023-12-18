@@ -81,7 +81,12 @@ public struct FeaturesView: View {
 
     private var titleView: some View {
         Group {
-            #if os(watchOS)
+            #if os(visionOS)
+            Text(configuration.title)
+                .font(.largeTitle)
+                .padding([.top, .horizontal], 40)
+
+            #elseif os(watchOS)
             Text(configuration.title)
                 .font(.title3.bold())
                 .frame(maxWidth: .infinity)

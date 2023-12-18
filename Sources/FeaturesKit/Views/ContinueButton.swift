@@ -19,7 +19,6 @@ struct ContinueButton: View {
         self.action = action
     }
 
-
     var body: some View {
         Button(action: action) {
             #if os(macOS)
