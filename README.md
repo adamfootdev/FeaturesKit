@@ -1,7 +1,7 @@
 # FeaturesKit
 
 ![Feature Graphic](https://github.com/adamfootdev/FeaturesKit/blob/main/Assets/feature-graphic.png?raw=true)
-![Platform](https://img.shields.io/badge/platforms-iOS%2FiPadOS%2015.0%2B%20%7C%20macOS%2013.0%2B%20%7C%20tvOS%2015.0%2B%20%7C%20watchOS%208.0%2B-blue)
+![Platform](https://img.shields.io/badge/platforms-iOS%2FiPadOS%2015.0%2B%20%7C%20macOS%2013.0%2B%20%7C%20tvOS%2015.0%2B%20%7C%20visionOS%201.0%2B%20%7C%20watchOS%208.0%2B-blue)
 
 FeaturesKit provides developers for Apple platforms with the ability to display a list of configured features in their apps. This is built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app, and has been designed to mimic the style of built-in Apple screens.
 
@@ -22,8 +22,9 @@ This has been localised into multiple languages and the buttons will automatical
 - iOS/iPadOS 15.0+
 - macOS 13.0+
 - tvOS 15.0+
+- visionOS 1.0+
 - watchOS 8.0+
-- Xcode 12.0+
+- Xcode 15.0+
 
 ## Integration
 
