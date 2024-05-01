@@ -8,7 +8,7 @@
 import Foundation
 
 /// A custom struct containing details for FeaturesKit.
-public struct FKConfiguration {
+public struct FKConfiguration: Sendable {
 
     /// The `String` to display at the top of the screen
     /// e.g. What's New, What's New in App or Welcome to App.
@@ -24,7 +24,7 @@ public struct FKConfiguration {
     public let continueButtonTitle: String
 
     /// An optional completion block to perform when the continue button is tapped.
-    public let continueAction: (() -> Void)?
+    public let continueAction: (@Sendable () -> Void)?
 
     /// Initializes a new `FKConfiguration` struct which contains details about the
     /// features to display.
@@ -40,7 +40,7 @@ public struct FKConfiguration {
         items: [FKItem],
         showContinueButton: Bool = true,
         continueButtonTitle: String? = nil,
-        continueAction: (() -> Void)? = nil
+        continueAction: (@Sendable () -> Void)? = nil
     ) {
         self.title = title
         self.items = items

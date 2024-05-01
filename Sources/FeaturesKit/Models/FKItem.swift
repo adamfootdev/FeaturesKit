@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A custom struct of data to create a new item to be shown in the list.
-public struct FKItem: Identifiable {
+public struct FKItem: Identifiable, Sendable {
 
     /// A unique ID set by the system so that the struct conforms to Identifiable.
     public let id = UUID()
