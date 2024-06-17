@@ -24,7 +24,7 @@ public struct FKConfiguration: Sendable {
     public let continueButtonTitle: String
 
     /// An optional completion block to perform when the continue button is tapped.
-    public let continueAction: (@Sendable () -> Void)?
+    public let continueAction: (@MainActor @Sendable () -> Void)?
 
     /// Initializes a new `FKConfiguration` struct which contains details about the
     /// features to display.
@@ -40,7 +40,7 @@ public struct FKConfiguration: Sendable {
         items: [FKItem],
         showContinueButton: Bool = true,
         continueButtonTitle: String? = nil,
-        continueAction: (@Sendable () -> Void)? = nil
+        continueAction: (@MainActor @Sendable () -> Void)? = nil
     ) {
         self.title = title
         self.items = items
