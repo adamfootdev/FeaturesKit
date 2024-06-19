@@ -17,7 +17,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "FeaturesKit",
-            targets: ["FeaturesKit"]),
+            targets: ["FeaturesKit"]
+        ),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -25,9 +26,14 @@ let package = Package(
         .target(
             name: "FeaturesKit",
             dependencies: [],
-            resources: [.process("Resources")]),
+            resources: [.process("Resources")],
+            swiftSettings: [
+                .swiftLanguageVersion(.v6)
+            ]
+        ),
         .testTarget(
             name: "FeaturesKitTests",
-            dependencies: ["FeaturesKit"]),
+            dependencies: ["FeaturesKit"]
+        ),
     ]
 )
