@@ -28,7 +28,7 @@ let package = Package(
             dependencies: [],
             resources: [.process("Resources")],
             swiftSettings: [
-                .swiftLanguageVersion(.v6)
+                .swiftLanguageMode(.v6)
             ]
         ),
         .testTarget(
