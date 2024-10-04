@@ -3,7 +3,6 @@
   "strings" : {
     "continueButton.title" : {
       "comment" : "General",
-      "extractionState" : "migrated",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -65,6 +64,12 @@
             "value" : "לְהַמשִׁיך"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folytatás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,6 +122,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Продолжать"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokračovať"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sürdür"
           }
         },
         "vi" : {
