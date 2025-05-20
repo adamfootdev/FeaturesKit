@@ -93,3 +93,7 @@ Add an about screen to your app.
 ### [HelpKit](https://github.com/adamfootdev/HelpKit)
 
 Add a help screen to your app.
+
+### [HapticsKit](https://github.com/adamfootdev/HapticsKit)
+
+Add haptic feedback to your app.
