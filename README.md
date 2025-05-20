@@ -16,6 +16,7 @@ This has been localised into multiple languages and the buttons will automatical
 4. [Other Packages](#other-packages)
     - [AboutKit](https://github.com/adamfootdev/AboutKit)
     - [HelpKit](https://github.com/adamfootdev/HelpKit)
+    - [HapticsKit](https://github.com/adamfootdev/HapticsKit)
 
 ## Requirements
 
