@@ -7,11 +7,11 @@ let package = Package(
     name: "FeaturesKit",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v16),
         .macOS(.v13),
-        .tvOS(.v15),
+        .tvOS(.v16),
         .visionOS(.v1),
-        .watchOS(.v8)
+        .watchOS(.v9)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.

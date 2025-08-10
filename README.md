@@ -20,12 +20,12 @@ This has been localised into multiple languages and the buttons will automatical
 
 ## Requirements
 
-- iOS/iPadOS 15.0+
+- iOS/iPadOS 16.0+
 - macOS 13.0+
-- tvOS 15.0+
+- tvOS 16.0+
 - visionOS 1.0+
-- watchOS 8.0+
-- Xcode 15.0+
+- watchOS 9.0+
+- Xcode 26.0+
 
 ## Integration
 

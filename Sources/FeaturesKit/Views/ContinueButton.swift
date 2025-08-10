@@ -20,15 +20,29 @@ struct ContinueButton: View {
     }
 
     var body: some View {
+        #if os(iOS) || os(macOS) || os(watchOS)
+        if #available(iOS 26.0, macOS 26.0, watchOS 26.0, *) {
+            button
+                .buttonStyle(.glassProminent)
+        } else {
+            button
+                .buttonStyle(.borderedProminent)
+        }
+        #else
+        button
+        #endif
+    }
+
+    private var button: some View {
         Button(action: action) {
             #if os(macOS)
             Text(title)
+                .foregroundStyle(.white)
                 .padding(.horizontal)
-                .frame(minWidth: 200)
-
             #elseif os(watchOS)
             Text(title)
                 .multilineTextAlignment(.center)
+                .foregroundStyle(.white)
                 .frame(maxWidth: .infinity, alignment: .center)
 
             #else
@@ -37,8 +51,7 @@ struct ContinueButton: View {
                 .frame(maxWidth: .infinity)
             #endif
         }
-        #if os(iOS) || os(macOS)
-        .buttonStyle(.borderedProminent)
+        #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
         .controlSize(.large)
         #endif
     }

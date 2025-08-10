@@ -45,6 +45,7 @@ public struct FeaturesView: View {
                             dismiss()
                         }
                     }
+                    .listItemTint(.clear)
                 }
             }
         }
@@ -52,29 +53,49 @@ public struct FeaturesView: View {
         #else
         VStack(spacing: verticalSpacing) {
             titleView
+                #if os(macOS)
+                .padding(.horizontal, horizontalPadding)
+                #endif
 
             VStack(spacing: 16) {
                 FeaturesListView(configuration.items)
+                    .padding(.horizontal)
+                    #if os(macOS)
+                    .padding(.horizontal, horizontalPadding)
+                    #endif
 
                 if configuration.showContinueButton {
-                    ContinueButton(configuration.continueButtonTitle) {
-                        if let continueAction = configuration.continueAction {
-                            continueAction()
-                        } else {
-                            dismiss()
+                    HStack {
+                        #if os(macOS)
+                        Spacer()
+                        #endif
+
+                        ContinueButton(configuration.continueButtonTitle) {
+                            if let continueAction = configuration.continueAction {
+                                continueAction()
+                            } else {
+                                dismiss()
+                            }
                         }
+                        #if os(tvOS)
+                        .prefersDefaultFocus(true, in: featuresNamespace)
+                        #endif
                     }
-                    #if os(tvOS)
-                    .prefersDefaultFocus(true, in: featuresNamespace)
-                    #endif
+                    #if os(macOS)
+                    .padding(.horizontal, 20)
+                    #else
                     .padding(.horizontal, horizontalPadding)
-                    .padding(.vertical, verticalPadding)
+                    #endif
                 }
             }
             #if os(tvOS)
             .focusScope(featuresNamespace)
             #endif
-            .padding(.bottom, configuration.showContinueButton ? 0 : verticalPadding)
+            #if os(macOS)
+            .padding(.bottom, 20)
+            #else
+            .padding(.bottom, verticalPadding)
+            #endif
         }
         #endif
     }
@@ -89,16 +110,17 @@ public struct FeaturesView: View {
             #elseif os(watchOS)
             Text(configuration.title)
                 .font(.title3.bold())
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
             #else
             Text(configuration.title)
-                .font(.largeTitle.bold())
+                .font(.title2.bold())
                 .padding([.top, .horizontal], 40)
 
             #endif
         }
-        .multilineTextAlignment(.center)
+        .multilineTextAlignment(.leading)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityAddTraits(.isHeader)
     }
 
@@ -114,7 +136,7 @@ public struct FeaturesView: View {
         #if os(tvOS)
         return 500
         #else
-        return 28
+        return 44
         #endif
     }
 
@@ -122,7 +144,7 @@ public struct FeaturesView: View {
         #if os(tvOS)
         return 20
         #else
-        return 28
+        return 44
         #endif
     }
 }
