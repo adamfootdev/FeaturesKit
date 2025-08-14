@@ -24,12 +24,23 @@ struct ContinueButton: View {
         if #available(iOS 26.0, macOS 26.0, watchOS 26.0, *) {
             button
                 .buttonStyle(.glassProminent)
+                #if os(iOS)
+                .controlSize(.extraLarge)
+                #elseif os(macOS) || os(tvOS) || os(visionOS)
+                .controlSize(.large)
+                #endif
         } else {
             button
                 .buttonStyle(.borderedProminent)
+                #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
+                .controlSize(.large)
+                #endif
         }
         #else
         button
+            #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
+            .controlSize(.large)
+            #endif
         #endif
     }
 
@@ -51,9 +62,6 @@ struct ContinueButton: View {
                 .frame(maxWidth: .infinity)
             #endif
         }
-        #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
-        .controlSize(.large)
-        #endif
     }
 }
 

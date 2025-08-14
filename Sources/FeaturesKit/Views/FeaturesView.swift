@@ -66,10 +66,6 @@ public struct FeaturesView: View {
 
                 if configuration.showContinueButton {
                     HStack {
-                        #if os(macOS)
-                        Spacer()
-                        #endif
-
                         ContinueButton(configuration.continueButtonTitle) {
                             if let continueAction = configuration.continueAction {
                                 continueAction()
@@ -77,25 +73,20 @@ public struct FeaturesView: View {
                                 dismiss()
                             }
                         }
+                        #if !os(macOS)
+                        .frame(maxWidth: 400)
+                        #endif
                         #if os(tvOS)
                         .prefersDefaultFocus(true, in: featuresNamespace)
                         #endif
                     }
-                    #if os(macOS)
-                    .padding(.horizontal, 20)
-                    #else
                     .padding(.horizontal, horizontalPadding)
-                    #endif
                 }
             }
             #if os(tvOS)
             .focusScope(featuresNamespace)
             #endif
-            #if os(macOS)
-            .padding(.bottom, 20)
-            #else
             .padding(.bottom, verticalPadding)
-            #endif
         }
         #endif
     }
@@ -136,7 +127,7 @@ public struct FeaturesView: View {
         #if os(tvOS)
         return 500
         #else
-        return 44
+        return 40
         #endif
     }
 
@@ -144,7 +135,7 @@ public struct FeaturesView: View {
         #if os(tvOS)
         return 20
         #else
-        return 44
+        return 16
         #endif
     }
 }
