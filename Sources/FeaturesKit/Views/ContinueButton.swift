@@ -65,10 +65,8 @@ struct ContinueButton: View {
     }
 }
 
-struct ContinueButton_Previews: PreviewProvider {
-    static var previews: some View {
-        ContinueButton {
-            print("Done")
-        }
+#Preview {
+    ContinueButton {
+        print("Done")
     }
 }

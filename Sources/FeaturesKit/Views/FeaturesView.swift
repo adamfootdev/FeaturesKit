@@ -53,14 +53,15 @@ public struct FeaturesView: View {
         #else
         VStack(spacing: verticalSpacing) {
             titleView
-                #if os(macOS)
+                #if os(macOS) || os(tvOS) || os(visionOS)
                 .padding(.horizontal, horizontalPadding)
+                #else
+                .padding(.top, 40)
                 #endif
 
             VStack(spacing: 16) {
                 FeaturesListView(configuration.items)
-                    .padding(.horizontal)
-                    #if os(macOS)
+                    #if os(macOS) || os(tvOS) || os(visionOS)
                     .padding(.horizontal, horizontalPadding)
                     #endif
 
@@ -117,15 +118,15 @@ public struct FeaturesView: View {
 
     private var verticalSpacing: CGFloat {
         #if os(tvOS)
-        return 80
+        return 60
         #else
-        return 40
+        return 20
         #endif
     }
 
     private var horizontalPadding: CGFloat {
         #if os(tvOS)
-        return 500
+        return 240
         #else
         return 40
         #endif
@@ -140,8 +141,16 @@ public struct FeaturesView: View {
     }
 }
 
-struct FeaturesView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeaturesView(configuration: .example)
-    }
+#Preview {
+    Text("Content")
+        #if os(tvOS)
+        .fullScreenCover(isPresented: .constant(true)) {
+            FeaturesView(configuration: .example)
+                .background(Material.regular)
+        }
+        #else
+        .sheet(isPresented: .constant(true)) {
+            FeaturesView(configuration: .example)
+        }
+        #endif
 }

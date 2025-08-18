@@ -80,8 +80,6 @@ struct FeatureItemRow: View {
     }
 }
 
-struct FeatureItemRow_Previews: PreviewProvider {
-    static var previews: some View {
-        FeatureItemRow(.example)
-    }
+#Preview {
+    FeatureItemRow(.example)
 }

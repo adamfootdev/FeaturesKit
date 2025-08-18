@@ -23,7 +23,7 @@ struct FeaturesListView: View {
             VStack(alignment: .leading, spacing: verticalSpacing) {
                 itemsView
             }
-            .padding(.horizontal, horizontalPadding)
+            .padding(.horizontal, 40)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         #endif
@@ -35,23 +35,13 @@ struct FeaturesListView: View {
 
     private var verticalSpacing: CGFloat {
         #if os(tvOS)
-        return 48
+        return 32
         #else
-        return 28
-        #endif
-    }
-
-    private var horizontalPadding: CGFloat {
-        #if os(tvOS)
-        return 240
-        #else
-        return 40
+        return 16
         #endif
     }
 }
 
-struct FeaturesListView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeaturesListView([.example, .example, .example])
-    }
+#Preview {
+    FeaturesListView([.example, .example, .example])
 }
