@@ -26,6 +26,9 @@ struct FeaturesListView: View {
             .padding(.horizontal, 40)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
+        #if os(iOS) || os(macOS) || os(visionOS)
+        .scrollBounceBehavior(.basedOnSize)
+        #endif
         #endif
     }
 
@@ -37,7 +40,7 @@ struct FeaturesListView: View {
         #if os(tvOS)
         return 32
         #else
-        return 16
+        return 20
         #endif
     }
 }

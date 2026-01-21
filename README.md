@@ -1,27 +1,30 @@
 # FeaturesKit
 
 ![Feature Graphic](https://github.com/adamfootdev/FeaturesKit/blob/main/Assets/feature-graphic.png?raw=true)
-![Platform](https://img.shields.io/badge/platforms-iOS%2FiPadOS%2015.0%2B%20%7C%20macOS%2013.0%2B%20%7C%20tvOS%2015.0%2B%20%7C%20visionOS%201.0%2B%20%7C%20watchOS%208.0%2B-blue)
+![Platform](https://img.shields.io/badge/platforms-iOS%2FiPadOS%2016.4%2B%20%7C%20macOS%2013.3%2B%20%7C%20tvOS%2016.0%2B%20%7C%20visionOS%201.0%2B%20%7C%20watchOS%209.0%2B-blue)
 
 FeaturesKit provides developers for Apple platforms with the ability to display a list of configured features in their apps. This is built using SwiftUI so can be displayed natively from a SwiftUI app or using a UIHostingController in a UIKit app, and has been designed to mimic the style of built-in Apple screens.
 
-This has been localised into multiple languages and the buttons will automatically adapt to your appʼs accent color.
+This has been localized into multiple languages and the buttons will automatically adapt to your appʼs accent color.
 
 1. [Requirements](#requirements)
 2. [Integration](#integration)
 3. [Usage](#usage)
     - [FKConfiguration](#fkconfiguration)
+    - [FKTitlePosition](#fktitleposition)
+    - [FKTitleStyle](#fktitlestyle)
     - [FKItem](#fkitem)
     - [FeaturesView](#featuresview)
 4. [Other Packages](#other-packages)
     - [AboutKit](https://github.com/adamfootdev/AboutKit)
     - [HelpKit](https://github.com/adamfootdev/HelpKit)
     - [HapticsKit](https://github.com/adamfootdev/HapticsKit)
+    - [InAppPurchaseKit](https://github.com/adamfootdev/InAppPurchaseKit)
 
 ## Requirements
 
-- iOS/iPadOS 16.0+
-- macOS 13.0+
+- iOS/iPadOS 16.4+
+- macOS 13.3+
 - tvOS 16.0+
 - visionOS 1.0+
 - watchOS 9.0+
@@ -35,13 +38,13 @@ FeaturesKit can be added to your app via Swift Package Manager in Xcode. Add to 
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/adamfootdev/FeaturesKit.git", from: "1.0.0")
+    .package(url: "https://github.com/adamfootdev/FeaturesKit.git", from: "2.0.0")
 ]
 ```
 
 ## Usage
 
-To start using the framework, you'll need to import it first:
+To start using the framework, youʼll need to import it first:
 
 ```swift
 import FeaturesKit
@@ -53,13 +56,36 @@ This is a struct containing all of the relevant details required to configure Fe
 
 ```swift
 let configuration = FKConfiguration(
-    title: "What's New in Example App", 
-    items: items, 
+    title: "Whatʼs New in Example App", 
+    titlePosition: position,
+    titleStyle: style,
+    items: items,
+    learnMoreURL: URL(string: "https://example.com")!,
+    learnMoreButtonTitle: "About Example App",
     showContinueButton: true, 
     continueButtonTitle: "Continue",
 ) {
     print("Done")
 }
+```
+
+### FKTitlePosition
+
+This is an enum used for setting the position of the title. Choose from the following options:
+
+```swift
+case leading
+case center
+case trailing
+```
+
+### FKTitleStyle
+
+This is an enum used for setting the style of the title. Choose from the following options:
+
+```swift
+case standard
+case large
 ```
 
 ### FKItem
@@ -98,3 +124,7 @@ Add a help screen to your app.
 ### [HapticsKit](https://github.com/adamfootdev/HapticsKit)
 
 Add haptic feedback to your app.
+
+### [InAppPurchaseKit](https://github.com/adamfootdev/InAppPurchaseKit)
+
+Add a subscription screen to your app.

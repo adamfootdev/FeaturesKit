@@ -7,8 +7,8 @@ let package = Package(
     name: "FeaturesKit",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v16),
-        .macOS(.v13),
+        .iOS("16.4"),
+        .macOS("13.3"),
         .tvOS(.v16),
         .visionOS(.v1),
         .watchOS(.v9)

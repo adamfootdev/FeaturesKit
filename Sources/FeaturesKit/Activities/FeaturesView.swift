@@ -10,6 +10,7 @@ import SwiftUI
 /// A SwiftUI `View` which displays a list of featured items.
 public struct FeaturesView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.openURL) private var openURL
 
     #if os(tvOS)
     @Namespace private var featuresNamespace
@@ -25,6 +26,24 @@ public struct FeaturesView: View {
     }
 
     public var body: some View {
+        #if os(iOS) || os(macOS) || os(visionOS)
+        if #available(iOS 26.0, macOS 26.0, visionOS 26.0, *) {
+            featuresView
+                .safeAreaBar(edge: .bottom) {
+                    continueButton
+                }
+        } else {
+            featuresView
+                .safeAreaInset(edge: .bottom) {
+                    continueButton
+                }
+        }
+        #else
+        featuresView
+        #endif
+    }
+
+    private var featuresView: some View {
         #if os(watchOS)
         List {
             Section {
@@ -65,62 +84,36 @@ public struct FeaturesView: View {
                     .padding(.horizontal, horizontalPadding)
                     #endif
 
-                if configuration.showContinueButton {
-                    HStack {
-                        ContinueButton(configuration.continueButtonTitle) {
-                            if let continueAction = configuration.continueAction {
-                                continueAction()
-                            } else {
-                                dismiss()
-                            }
-                        }
-                        #if !os(macOS)
-                        .frame(maxWidth: 400)
-                        #endif
-                        #if os(tvOS)
-                        .prefersDefaultFocus(true, in: featuresNamespace)
-                        #endif
-                    }
-                    .padding(.horizontal, horizontalPadding)
-                }
+                #if !os(iOS) && !os(macOS) && !os(visionOS)
+                continueButton
+                #endif
             }
             #if os(tvOS)
             .focusScope(featuresNamespace)
             #endif
+            #if !os(iOS)
             .padding(.bottom, verticalPadding)
+            #endif
         }
         #endif
     }
 
     private var titleView: some View {
-        Group {
-            #if os(visionOS)
-            Text(configuration.title)
-                .font(.largeTitle)
-                .padding([.top, .horizontal], 40)
-
-            #elseif os(watchOS)
-            Text(configuration.title)
-                .font(.title3.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-            #else
-            Text(configuration.title)
-                .font(.title2.bold())
-                .padding([.top, .horizontal], 40)
-
+        Text(configuration.title)
+            .font(configuration.titleStyle.font)
+            .multilineTextAlignment(configuration.titlePosition.textAlignment)
+            #if !os(watchOS)
+            .padding([.top, .horizontal], 40)
             #endif
-        }
-        .multilineTextAlignment(.leading)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .accessibilityAddTraits(.isHeader)
+            .frame(maxWidth: .infinity, alignment: configuration.titlePosition.viewAlignment)
+            .accessibilityAddTraits(.isHeader)
     }
 
     private var verticalSpacing: CGFloat {
         #if os(tvOS)
         return 60
         #else
-        return 20
+        return 28
         #endif
     }
 
@@ -135,6 +128,50 @@ public struct FeaturesView: View {
     private var verticalPadding: CGFloat {
         #if os(tvOS)
         return 20
+        #else
+        return 16
+        #endif
+    }
+
+    @ViewBuilder
+    private var continueButton: some View {
+        if configuration.showContinueButton {
+            VStack(spacing: continueButtonSpacing) {
+                #if !os(tvOS) && !os(watchOS)
+                if let url = configuration.learnMoreURL {
+                    Button(configuration.learnMoreButtonTitle) {
+                        openURL(url)
+                    }
+                    #if os(macOS)
+                    .buttonStyle(.link)
+                    #endif
+                }
+                #endif
+
+                ContinueButton(configuration.continueButtonTitle) {
+                    if let continueAction = configuration.continueAction {
+                        continueAction()
+                    } else {
+                        dismiss()
+                    }
+                }
+                #if !os(macOS)
+                .frame(maxWidth: 400)
+                #endif
+                #if os(tvOS)
+                .prefersDefaultFocus(true, in: featuresNamespace)
+                #endif
+            }
+            .padding(.horizontal, horizontalPadding)
+            #if os(iOS) || os(macOS) || os(visionOS)
+            .padding(.bottom, 16)
+            #endif
+        }
+    }
+
+    private var continueButtonSpacing: CGFloat {
+        #if os(macOS)
+        return 8
         #else
         return 16
         #endif
