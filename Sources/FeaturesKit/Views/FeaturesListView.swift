@@ -24,6 +24,7 @@ struct FeaturesListView: View {
                 itemsView
             }
             .padding(.horizontal, 40)
+            .padding(.bottom, 20)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         #if os(iOS) || os(macOS) || os(visionOS)
@@ -33,7 +34,9 @@ struct FeaturesListView: View {
     }
 
     private var itemsView: some View {
-        ForEach(items, content: FeatureItemRow.init)
+        ForEach(Array(items.enumerated()), id: \.0) { _, item in
+            FeatureItemRow(item)
+        }
     }
 
     private var verticalSpacing: CGFloat {
