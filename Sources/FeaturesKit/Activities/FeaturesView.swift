@@ -31,11 +31,21 @@ public struct FeaturesView: View {
             featuresView
                 .safeAreaBar(edge: .bottom) {
                     continueButton
+                        .frame(maxWidth: maxWidth)
+                        #if !os(watchOS)
+                        .padding(.horizontal, horizontalPadding)
+                        .padding(.bottom, 16)
+                        #endif
                 }
         } else {
             featuresView
                 .safeAreaInset(edge: .bottom) {
                     continueButton
+                        .frame(maxWidth: maxWidth)
+                        #if !os(watchOS)
+                        .padding(.horizontal, horizontalPadding)
+                        .padding(.bottom, 16)
+                        #endif
                 }
         }
         #else
@@ -86,13 +96,15 @@ public struct FeaturesView: View {
 
                 #if !os(iOS) && !os(macOS) && !os(visionOS)
                 continueButton
+                    .frame(maxWidth: maxWidth)
+                    #if !os(watchOS)
+                    .padding(.horizontal, horizontalPadding)
+                    .padding(.bottom, 16)
+                    #endif
                 #endif
             }
             #if os(tvOS)
             .focusScope(featuresNamespace)
-            #endif
-            #if !os(iOS)
-            .padding(.bottom, verticalPadding)
             #endif
         }
         #endif
@@ -125,14 +137,6 @@ public struct FeaturesView: View {
         #endif
     }
 
-    private var verticalPadding: CGFloat {
-        #if os(tvOS)
-        return 20
-        #else
-        return 16
-        #endif
-    }
-
     @ViewBuilder
     private var continueButton: some View {
         if configuration.showContinueButton {
@@ -155,17 +159,10 @@ public struct FeaturesView: View {
                         dismiss()
                     }
                 }
-                #if !os(macOS)
-                .frame(maxWidth: 400)
-                #endif
                 #if os(tvOS)
                 .prefersDefaultFocus(true, in: featuresNamespace)
                 #endif
             }
-            .padding(.horizontal, horizontalPadding)
-            #if os(iOS) || os(macOS) || os(visionOS)
-            .padding(.bottom, 16)
-            #endif
         }
     }
 
@@ -174,6 +171,18 @@ public struct FeaturesView: View {
         return 8
         #else
         return 16
+        #endif
+    }
+
+    private var maxWidth: CGFloat {
+        #if os(macOS)
+        return 200
+        #elseif os(tvOS)
+        return 600
+        #elseif os(watchOS)
+        return .infinity
+        #else
+        return 400
         #endif
     }
 }

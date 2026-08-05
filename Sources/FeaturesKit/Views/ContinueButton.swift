@@ -26,41 +26,35 @@ struct ContinueButton: View {
                 .buttonStyle(.glassProminent)
                 #if os(iOS)
                 .controlSize(.extraLarge)
-                #elseif os(macOS) || os(tvOS) || os(visionOS)
+                #elseif os(macOS)
                 .controlSize(.large)
                 #endif
         } else {
             button
                 .buttonStyle(.borderedProminent)
-                #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
+                #if os(iOS) || os(macOS)
                 .controlSize(.large)
                 #endif
         }
         #else
         button
-            #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
+            .buttonStyle(.borderedProminent)
             .controlSize(.large)
-            #endif
         #endif
     }
 
     private var button: some View {
         Button(action: action) {
-            #if os(macOS)
             Text(title)
-                .foregroundStyle(.white)
+                #if os(macOS)
                 .padding(.horizontal)
-            #elseif os(watchOS)
-            Text(title)
+                #elseif os(watchOS)
                 .multilineTextAlignment(.center)
-                .foregroundStyle(.white)
                 .frame(maxWidth: .infinity, alignment: .center)
-
-            #else
-            Text(title)
+                #else
                 .font(.headline)
-                .frame(maxWidth: .infinity)
-            #endif
+                .frame(maxWidth: .infinity, alignment: .center)
+                #endif
         }
     }
 }

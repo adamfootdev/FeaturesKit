@@ -83,7 +83,7 @@ public struct FKConfiguration: Sendable {
     /// An example `FKConfiguration` to be used in SwiftUI previews.
     static let example = FKConfiguration(
         title: "Whatʼs New in Example App",
-        items: [.example, .example, .example]
+        items: [.example, .example, .example, .example, .example, .example, .example, .example, .example, .example, .example, .example]
     ) {
         print("Done")
     }
