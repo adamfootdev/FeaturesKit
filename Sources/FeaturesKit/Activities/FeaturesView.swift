@@ -37,6 +37,9 @@ public struct FeaturesView: View {
                         .padding(.bottom, 16)
                         #endif
                 }
+                #if os(iOS)
+                .scrollEdgeEffectHidden(true, for: .bottom)
+                #endif
         } else {
             featuresView
                 .safeAreaInset(edge: .bottom) {
